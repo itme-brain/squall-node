@@ -10,11 +10,12 @@
   services = { 
     avahi = {
       enable = true;
-      hostName = "node.local";
+      hostName = "squall.local";
     };
     
     openssh = {
       enable = true;
+      startWhenNeeded = true;
       permitRootLogin = "no";
     };
 
