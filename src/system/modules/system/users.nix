@@ -3,14 +3,14 @@
 {
   users.users = {
     root = {
-      password = "";
+      password = "!";
       createHome = false;
     };
 
     squall = {
       isNormalUser = true;
       extraGroups = [ "wheel" "bitcoin" ];
-      initialPassword = "squall";
+      initialPassword = "satoshi";
     };
 
     core = {
