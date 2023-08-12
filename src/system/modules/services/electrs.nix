@@ -1,5 +1,6 @@
 { config, pkgs, lib, rustPlatform, fetchFromGitHub, ... }:
 with lib;
+
 let
   cfg = config.modules.electrum;
   User = "electrum";
@@ -25,9 +26,9 @@ let
       description = "An efficient re-implementation of Electrum Server in Rust";
       homepage = "https://github.com/romanz/electrs";
       license = licenses.mit;
-      maintainers = with maintainers; [ ];
     };
   };
+
 in
 {
   options.modules.bitcoin = { enable = mkEnableOption "bitcoin"; };

@@ -1,5 +1,6 @@
 { config, pkgs, lib, stdenv, fetchTarball, ... }:
 with lib; 
+
 let
   cfg = config.modules.bitcoin;
   User = "core";
@@ -25,9 +26,9 @@ let
       description = "Bitcoin Core integration/staging tree";
       homepage = "https://bitcoincore.org/";
       license = licenses.mit;
-      maintainers = with maintainers; [ ];
     };
   };
+
 in
 {
   options.modules.bitcoin = { enable = mkEnableOption "bitcoin"; };
