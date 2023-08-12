@@ -13,7 +13,7 @@ let
       owner = "romanz";
       repo = "electrs";
       rev = "v${version}";
-      hash = "sha256-1rydiazn25f0lw24j05nnjaivmk0d2d8l647inxb2n86pfm9azgz";
+      sha256 = "1rydiazn25f0lw24j05nnjaivmk0d2d8l647inxb2n86pfm9azgz";
     };
 
     cargoHash = "sha256-eQAizO26oQRosbMGJLwMmepBN3pocmnbc0qsHsAJysg=";
