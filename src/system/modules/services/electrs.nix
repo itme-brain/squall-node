@@ -1,10 +1,11 @@
-{ config, pkgs, lib, rustPlatform, fetchFromGitHub, ... }:
+{ pkgs, lib, config,  rustPlatform, fetchFromGitHub, ... }:
 with lib;
 
 let
   cfg = config.modules.electrum;
   User = "electrum";
   Group = "bitcoin";
+
   Electrum = rustPlatform.buildRustPackage rec {
     pname = "electrs";
     version = "0.10.0-rc.1";
@@ -33,12 +34,21 @@ in
 {
   options.modules.bitcoin = { enable = mkEnableOption "bitcoin"; };
   config = mkIf cfg.enable {
+    users.users.electrum = {
+      isSystemUser = true;
+      shell = "sbin/nologin";
+      group = "bitcoin";
+    };
+
+    users.groups.bitcoin = {};
+
     systemd.services.electrs = {
       enable = true;
       description = "Electrs Bitcoin indexer";
       
-      after = ["bitcoind"];
-      requires = ["bitcoind"];
+      requires = ["bitcoind.service"];
+      after = ["bitcoind.service"];
+      wants = [ "network-online.target" ];
       
       serviceConfig = {
         inherit User;
