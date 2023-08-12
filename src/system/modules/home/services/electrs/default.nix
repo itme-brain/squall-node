@@ -32,7 +32,7 @@ let
 
 in
 {
-  options.modules.bitcoin = { enable = mkEnableOption "bitcoin"; };
+  options.modules.bitcoin = { enable = mkEnableOption "electrum"; };
   config = mkIf cfg.enable {
     users.users.electrum = {
       isSystemUser = true;

@@ -30,7 +30,7 @@ let
 in
 {
 
-  options.modules.lightning = { enable = mkEnableOption "bitcoin"; };
+  options.modules.lightning = { enable = mkEnableOption "lightning"; };
   config = mkIf cfg.enable {
     users.users.lightning = {
       isSystemUser = true;
