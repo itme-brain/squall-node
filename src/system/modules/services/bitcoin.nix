@@ -1,4 +1,4 @@
-{ config, pkgs, lib, stdenv, fetchTarball, ... }:
+{ pkgs, lib, config, stdenv, fetchTarball, ... }:
 with lib; 
 
 let
@@ -23,7 +23,7 @@ let
     '';
 
     meta = with lib; {
-      description = "Bitcoin Core integration/staging tree";
+      description = "Bitcoin Core v${version}";
       homepage = "https://bitcoincore.org/";
       license = licenses.mit;
     };
@@ -33,7 +33,15 @@ in
 {
   options.modules.bitcoin = { enable = mkEnableOption "bitcoin"; };
   config = mkIf cfg.enable {
-    systemd.services.bitcoind.mainnet = {
+    users.users.core = {
+      isSystemUser = true;
+      shell = "sbin/nologin";
+      group = "bitcoin";
+    };
+
+    users.groups.bitcoin = {};
+
+    systemd.services.bitcoind = {
       enable = true;
       description = "Bitcoin daemon";
 
