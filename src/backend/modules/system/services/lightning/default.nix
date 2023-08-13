@@ -1,5 +1,6 @@
 { pkgs, lib, config, fetchFromGitHub, autoreconfHook, pkgconfig, gmp, sqlite, python3, libffi, libsodium, ... }:
 with lib;
+#TODO: Setup CLN-Rest and RTL
 
 let
   cfg = config.modules.lightning;
@@ -30,7 +31,7 @@ let
 
 in
 {
-  imports = [ ./REST.nix ];
+  imports = [ ./cln-rest.nix ];
 
   options.modules.lightning = { enable = mkEnableOption "lightning"; };
   config = mkIf cfg.enable {
