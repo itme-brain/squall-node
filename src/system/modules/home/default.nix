@@ -1,5 +1,8 @@
 { ... }:
 
+#TODO: Move the services to the system level since they
+#      create users and modify priveledges
+
 {
   programs.home-manager.enable = true;
   imports = [ (import ./services) ];
