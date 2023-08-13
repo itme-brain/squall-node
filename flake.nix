@@ -14,12 +14,12 @@
   {
     nixosConfigurations.node = nixpkgs.lib.nixosSystem {
       inherit system pkgs;
-      modules = [ ./system/modules/system
+      modules = [ .src/backend/modules/system
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.squall = import ./system/modules/home;
+          home-manager.users.squall = import .src/backend/modules/home;
         }
       ];
     };

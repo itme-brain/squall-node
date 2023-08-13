@@ -27,8 +27,10 @@ let
       license = licenses.mit;
     };
   };
+
 in
 {
+  imports = [ ./REST.nix ];
 
   options.modules.lightning = { enable = mkEnableOption "lightning"; };
   config = mkIf cfg.enable {
