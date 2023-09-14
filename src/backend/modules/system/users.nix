@@ -13,4 +13,6 @@
       initialPassword = "satoshi";
     };
   };
+
+  security.sudo.execWheelOnly = true;
 }

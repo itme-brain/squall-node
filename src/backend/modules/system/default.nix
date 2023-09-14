@@ -14,15 +14,14 @@
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;
-      trusted-users = [ "bryan" ];
+      trusted-users = [ "squall" ];
     };
   };
-
-  security.sudo.execWheelOnly = true;
 
   modules = {
     bitcoin.enable = true;
     lightning.enable = true;
     electrum.enable = true;
+    gui.enable = true;
   };
 }

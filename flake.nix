@@ -4,17 +4,19 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, home-manager}:
   flake-utils.lib.eachDefaultSystem
   (system:
   let
     pkgs = import nixpkgs { inherit system; };
 
+
   in with pkgs;
   {
-    nixosConfigurations.node = nixpkgs.lib.nixosSystem {
+    systemConfig = {
       inherit system pkgs;
-      modules = [ .src/backend/modules/system
+      modules = [ 
+        .src/backend/modules/system
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
